@@ -1,6 +1,18 @@
 easy_admin:
     entities:
-
-        - App\Entity\Article
-#        - App\Entity\Category
-#        - App\Entity\User
+        Article:
+            class : App\Entity\Article
+        User:
+            class: App\Entity\User
+            # Notre controller spécifique
+            controller: App\Controller\UserAdminController
+            form:
+                fields:
+                    # Fomulaire de création / modification d'un utilisateur
+                    - { property: 'email'}
+                    # Ici on retrouve notre propriété plainPassword pour la modification du mot de passe 
+                    - { property: 'password', type: 'password'}
+                    - { property: 'lastName', label: 'FirstName'}
+                    - { property: 'firstName', label: 'FirstName'}
+                    - { property: 'avatarImage', label: 'Avatar'}
+                    
