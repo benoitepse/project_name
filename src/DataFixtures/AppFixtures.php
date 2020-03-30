@@ -15,15 +15,6 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $faker = Faker\Factory::create('fr_FR');
-
-        $name=$faker->name();
-        $name=$faker->lastName();
-        ;
-        $user=new User;
-
         
-
-        $manager->flush();
     }
 }

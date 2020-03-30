@@ -42,13 +42,8 @@ class User implements UserInterface
      */
     private $password;
 
-     /**
-     * @var string
-     */
-    private $plainPassword;
-     
-    // ......
-
+    
+   
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -115,7 +110,7 @@ class User implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = "ROLE_USER";
 
         return array_unique($roles);
     }
@@ -123,6 +118,15 @@ class User implements UserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function addRoles(string $roles): self
+    {
+        if (!in_array($roles, $this->roles)) {
+            $this->roles[] = $roles;
+        }
 
         return $this;
     }
@@ -159,24 +163,7 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    /**
-     * @return string
-     */
-    public function getPlainPassword(): ?string
-    {
-        return $this->plainPassword;
-    }
-
-    /**
-     * @param string $plainPassword
-     * @return User
-     */
-    public function setPlainPassword(string $plainPassword): User
-    {
-        $this->plainPassword = $plainPassword;
-        return $this;
-    }
-
+  
 
     public function getLastName(): ?string
     {
